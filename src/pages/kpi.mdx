@@ -1,0 +1,231 @@
+import { CodeGroup, Row, Col, Properties, Property } from "../components/mdx.jsx"
+
+export const description =
+    'On this page, we’ll dive into the different submisson deadline endpoints you can use to manage submission deadline.'
+
+
+Submisson deadline
+
+## List get tahun assessment dan periode. {{ tag: 'GET', label: '/v1/human-resource/submissionDeadline' }}
+
+<Row>
+  <Col>
+
+    This endpoint get a list of all assessment years and periods.
+
+    # Request
+
+    ### Optional attributes
+
+        <Properties>
+            <Property name="year" type="string">
+                Unique this year submission deadline
+            </Property>
+            <Property name="periods" type="array<string>">
+                The array of periods month, submission_deadline.
+            </Property>
+        </Properties>
+
+    # Response 
+
+        <Properties>
+             <Property name="year" type="string">
+                Get this year submission deadline
+            </Property>
+        </Properties>
+         <Properties>
+             <Property name="periods" type="string<array>">
+                The array of periods mont submission deadline
+            </Property>
+        </Properties>
+         <Properties>
+             <Property name="periods.month" type="string">
+                Get name month in array periods
+            </Property>
+        </Properties>
+        <Properties>
+             <Property name="periods.submission_deadline" type="date">
+                Get date submission_deadline in array periods
+            </Property>
+        </Properties>
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="GET" label="/v1/human-resource/submissionDeadline">
+    ```typescript {{ title: 'axios' }}
+    const response = axios.get('/v1/human-resource/submissionDeadline')
+    ```
+    </CodeGroup>
+    <CodeGroup title="Response">
+    ```json {{ title: '200' }}
+        {
+            "year": 2024,
+            "periods": [
+            {
+                "month": "January",
+                "submission_deadline": "2024-01-31"
+            },
+            {
+                "month": "February",
+                "submission_deadline": "2024-02-28"
+            },
+            {
+                "month": "Maret",
+                "submission_deadline": "2024-12-31"
+            }
+            ...
+            ]
+        },
+        ...
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
+<br />
+## List pertahun assessment dan periode. {{ tag: 'GET', label: '/v1/human-resource/submissionDeadline/{year}' }}
+<Row>
+  <Col>
+  
+    This endpoint takes a list of specific years to display data with year parameter.
+
+    # Request
+
+    ### Optional attributes
+
+    <Properties>
+            <Property name="year" type="string">
+                Unique this year submission deadline
+            </Property>
+            <Property name="periods" type="array<string>">
+                The array of periods month, submission_deadline.
+            </Property>
+    </Properties>
+
+    # Response 
+
+        <Properties>
+             <Property name="year" type="string">
+                Get this year submission deadline
+            </Property>
+        </Properties>
+         <Properties>
+             <Property name="periods" type="string<array>">
+                The array of periods month submission deadline
+            </Property>
+        </Properties>
+         <Properties>
+             <Property name="periods.month" type="string">
+                Get name month in array periods
+            </Property>
+        </Properties>
+        <Properties>
+             <Property name="periods.submission_deadline" type="date">
+                Get date submission_deadline in array periods
+            </Property>
+        </Properties>
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="GET" label="/v1/human-resource/submissionDeadline/{year}">
+    ```typescript {{ title: 'axios' }}
+    const response = axios.get('/v1/human-resource/submissionDeadline/{years}')
+    ```
+    </CodeGroup>
+    <CodeGroup title="Response">
+    ```json {{ title: '200' }}
+        {
+            "year": 2024,
+            "periods": [
+            {
+                "month": "January",
+                "submission_deadline": "2024-01-31"
+            },
+            {
+                "month": "February",
+                "submission_deadline": "2024-02-28"
+            },
+            {
+                "month": "Maret",
+                "submission_deadline": "2024-12-31"
+            }
+            ...
+            ]
+        }
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
+<br />
+## Update setting deadline setiap tahun. {{ tag: 'PUT', label: '/v1/human-resource/submissionDeadline' }}
+<Row>
+    <Col>
+
+    Endpoint for setting submission deadline.
+
+    # Request
+
+    ### Required attributes
+
+     <Properties>
+        <Property name="year" type="string">
+            The name for the year
+        </Property>
+        <Property name="periods" type="array<string>">
+            The array of allowed periods name.
+        </Property>
+    </Properties>
+
+    ### Response
+
+    <Properties>
+        <Property name="success" type="string">
+            The message Successfully
+        </Property>
+    </Properties>
+
+      <Properties>
+        <Property name="error" type="string">
+            The message Error years alredy exists
+        </Property>
+    </Properties>
+    
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="GET" label="/v1/human-resource/submissionDeadline">
+    ```typescript {{ title: 'axios' }}
+    const response = axios.put('/v1/human-resource/submissionDeadline/{years}', {
+        year: 2024,
+        periods: [
+            {
+            month: "January",
+            submission_deadline: "2024-01-31"
+            },
+            {
+            month: "February",
+            submission_deadline: "2024-02-29"
+            },
+            {
+            month: "March",
+            submission_deadline: "2024-03-31"
+            }
+            // Tambahkan bulan lainnya sesuai kebutuhan
+        ]
+    })
+    ```
+    </CodeGroup>
+    <CodeGroup title="Response">
+    ```json {{ title: '200' }}
+        {
+            "message": "Successfully updated."
+        }
+    ```
+    </CodeGroup>
+    <CodeGroup title="Response">
+    ```json {{ title: '404' }}
+        {
+            "message": "Error years alredy exists."
+        }
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
