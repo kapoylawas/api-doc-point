@@ -351,3 +351,321 @@ Submisson deadline
     </CodeGroup>
   </Col>
 </Row>
+<br />
+## Post Generate Denda . {{ tag: 'POST', label: '/v1/human-resource/generateDenda' }}
+<Row>
+    <Col>
+
+    Endpoint for generate denda.
+
+
+     <Properties>
+           This endpoint for generate denda.
+    </Properties>
+
+    # Request
+
+    ### Required attributes
+
+     <Properties>
+        <Property name="employee_id" type="string">
+           Unique identifier for the employee.
+        </Property>
+        <Property name="submission_date" type="string (YYYY-MM-DD)">
+            The submission_date The date when the employee submitted their evaluation.
+        </Property>
+        <Property name="deadline_date" type="string (YYYY-MM-DD)">
+            The deadline_date The deadline for submitting evaluations.
+        </Property>
+        <Property name="status" type="string (draft, submitted)">
+            The statys drafy and submitted The status of the evaluation (draft or submitted).
+        </Property>
+        <Property name="penalty_basis" type="number">
+            The penalty_basis The monetary basis for calculating the penalty per day..
+        </Property>
+    </Properties>
+
+    ### Response
+
+    <Properties>
+        <Property name="employee_id" type="string">
+           The ID of the employee.
+        </Property>
+        <Property name="penalty_amount" type="number">
+            Total penalty amount in Rupiah.
+        </Property>
+        <Property name="days_late" type="number">
+            Total number of days late.
+        </Property>
+        <Property name="evaluation_status" type="string">
+            Status of the evaluation (submitted, draft, not submitted)..
+        </Property>
+        <Property name="message" type="string">
+            Additional information about the penalty calculation.
+        </Property>
+    </Properties>
+
+    ### Notes
+    <Properties>
+        <Property name="note">
+           If the penalty basis is not provided or is null, the penalty amount will also be considered null.
+        </Property>
+        <Property name="note">
+            The current date should be dynamically fetched from the server at the time of the request to ensure accuracy.
+        </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="POST" label="/v1/human-resource/generateDenda">
+    ```typescript {{ title: 'axios' }}
+    const response = axios.post('/v1/human-resource/generateDenda', {
+            employee_id: "E123",
+            submission_date: "2023-09-05",
+            deadline_date: "2023-09-01",
+            status: "draft",
+            penalty_basis: 10000
+    })
+    ```
+    </CodeGroup>
+    <CodeGroup title="Response">
+    ```json {{ title: '200' }}
+        {
+            "employee_id": "E123",
+            "penalty_amount": 40000,
+            "days_late": 4,
+            "evaluation_status": "draft",
+            "message": "Late submission penalty calculated."
+        }
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
+<br />
+## All Report Denda . {{ tag: 'GET', label: '/v1/human-resource/reportDenda' }}
+<Row>
+    <Col>
+
+    Endpoint for All Report Denda.
+
+
+     <Properties>
+           Endpoint for All Report Denda.
+    </Properties>
+
+    ### Response
+
+    <Properties>
+        <Property name="Description">
+           Retrieves a report of late evaluation penalties for employees.
+        </Property>
+    </Properties>
+
+    ### Notes
+    <Properties>
+        <Property name="note">
+           The report will include all employees.
+        </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="GET" label="/v1/human-resource/reportDenda">
+    ```typescript {{ title: 'axios' }}
+    const response = axios.post('/v1/human-resource/reportDenda')
+    ```
+    </CodeGroup>
+    <CodeGroup title="Response">
+    ```json {{ title: '200' }}
+    {
+        "report": [
+                {
+                    "employee_id": "E123",
+                    "employee_name": "John Doe",
+                    "submission_date": "2023-09-05",
+                    "deadline_date": "2023-09-01",
+                    "days_late": 4,
+                    "penalty_amount": 40000,
+                    "evaluation_status": "draft"
+                },
+                {
+                    "employee_id": "E456",
+                    "employee_name": "Jane Smith",
+                    "submission_date": "2023-09-03",
+                    "deadline_date": "2023-09-01",
+                    "days_late": 2,
+                    "penalty_amount": 20000,
+                    "evaluation_status": "submitted"
+                }
+        ],
+        "message": "Report generated successfully."
+    }
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
+<br />
+## Report Denda Get Range Date . {{ tag: 'GET', label: '/v1/human-resource/reportDenda?start_date=2023-09-01&end_date=2023-09-05' }}
+<Row>
+    <Col>
+
+    Endpoint for generate denda.
+
+
+     <Properties>
+           This endpoint for generate denda.
+    </Properties>
+
+    ### Response
+
+    <Properties>
+        <Property name="Description">
+           Retrieves a report of late evaluation penalties for employees.
+        </Property>
+        <Property name="Query Parameters">
+            start_date (string, optional): Filter report from this date (YYYY-MM-DD).
+        </Property>
+        <Property name="Query Parameters">
+            end_date (string, optional): Filter report until this date (YYYY-MM-DD).
+        </Property>
+    </Properties>
+
+    ### Notes
+    <Properties>
+        <Property name="note">
+           The report will include all employees who have late submissions within the specified date range.
+        </Property>
+        <Property name="note">
+            If no parameters are provided, the report will default to showing all penalties for the current month.
+        </Property>
+        <Property name="note">
+            The API should handle cases where no penalties are found, returning an appropriate message and an empty report array.
+        </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="GET" label="/v1/human-resource/reportDenda?start_date=2023-09-01&end_date=2023-09-05">
+    ```typescript {{ title: 'axios' }}
+    const response = axios.post('/v1/human-resource/reportDenda?start_date=2023-09-01&end_date=2023-09-05')
+    ```
+    </CodeGroup>
+    <CodeGroup title="Response">
+    ```json {{ title: '200' }}
+    {
+        "report": [
+                {
+                    "employee_id": "E123",
+                    "employee_name": "John Doe",
+                    "submission_date": "2023-09-05",
+                    "deadline_date": "2023-09-01",
+                    "days_late": 4,
+                    "penalty_amount": 40000,
+                    "evaluation_status": "draft"
+                },
+                {
+                    "employee_id": "E456",
+                    "employee_name": "Jane Smith",
+                    "submission_date": "2023-09-03",
+                    "deadline_date": "2023-09-01",
+                    "days_late": 2,
+                    "penalty_amount": 20000,
+                    "evaluation_status": "submitted"
+                }
+        ],
+        "message": "Report generated successfully."
+    }
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
+<br />
+## History Denda. {{ tag: 'GET', label: '/v1/human-resource/historyDenda?employee_id=E123&start_date=2023-08-01&end_date=2023-09-05' }}
+<Row>
+    <Col>
+
+    Endpoint for generate denda.
+
+
+     <Properties>
+           This endpoint for generate denda.
+    </Properties>
+
+    ### Response
+
+    <Properties>
+        <Property name="Description">
+           Retrieves a history of late evaluation penalties for employees, with default filters applied.
+        </Property>
+        <Property name="Query Parameters">
+           employee_id (string, optional): Filter by specific employee ID.
+        </Property>
+        <Property name="Query Parameters">
+            status (string, optional): Filter by evaluation status (e.g., draft, submitted, not submitted).
+        </Property>
+        <Property name="Query Parameters">
+            start_date (string, optional): Filter report from this date (YYYY-MM-DD).
+        </Property>
+        <Property name="Query Parameters">
+            end_date (string, optional): Filter report until this date (YYYY-MM-DD).
+        </Property>
+        <Property name="Default Filters">
+            If no filters are provided, the API will default to returning penalties for the last 30 days.
+        </Property>
+        <Property name="Default Filters">
+            The default status filter will be set to include all statuses.
+        </Property>
+    </Properties>
+
+    ### Notes
+    <Properties>
+        <Property name="note">
+           If no penalties are found for the specified filters, the response should contain an empty history array and an appropriate message.
+        </Property>
+        <Property name="note">
+            The API should handle date validation and return errors for invalid date formats.
+        </Property>
+        <Property name="note">
+            Pagination may be implemented if the history data set is extensive, to improve performance.
+        </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="GET" label="/v1/human-resource/historyDenda?employee_id=E123&start_date=2023-08-01&end_date=2023-09-05">
+    ```typescript {{ title: 'axios' }}
+    const response = axios.post('/v1/human-resource/historyDenda?employee_id=E123&start_date=2023-08-01&end_date=2023-09-05')
+    ```
+    </CodeGroup>
+    <CodeGroup title="Response">
+    ```json {{ title: '200' }}
+    {
+        "history": [
+            {
+                "employee_id": "E123",
+                "employee_name": "John Doe",
+                "submission_date": "2023-09-05",
+                "deadline_date": "2023-09-01",
+                "days_late": 4,
+                "penalty_amount": 40000,
+                "evaluation_status": "draft",
+                "penalty_date": "2023-09-06"
+            },
+            {
+                "employee_id": "E123",
+                "employee_name": "John Doe",
+                "submission_date": "2023-08-28",
+                "deadline_date": "2023-08-25",
+                "days_late": 3,
+                "penalty_amount": 30000,
+                "evaluation_status": "submitted",
+                "penalty_date": "2023-08-29"
+            }
+        ],
+        "total_penalties": 70000,
+        "message": "Penalty history retrieved successfully."
+    }
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
