@@ -201,7 +201,7 @@ export const navigation = [
       { title: 'Permissions', href: '/permissions' },
       { title: 'Roles', href: '/roles' },
       { title: 'Users', href: '/users' },
-      { title: 'KPI', href: '/kpi' },
+      { title: 'Setting Deadline', href: '/kpi' },
     ],
   },
 ]

@@ -6,6 +6,81 @@ export const description =
 
 Submisson deadline
 
+## Create Deadline {{ tag: 'POST', label: '/v1/human-resource/submissionDeadline' }}
+
+<Row>
+    <Col>
+    This endpoint create setting deadline.
+
+    # Request
+
+    ### Required attributes
+
+     <Properties>
+        <Property name="year" type="string">
+            The name for the year
+        </Property>
+        <Property name="periods" type="array<string>">
+            The array of allowed periods month and date submission_deadline.
+        </Property>
+    </Properties>
+
+     ### Response
+
+    <Properties>
+        <Property name="success" type="string">
+            The message Successfully setting deadline
+        </Property>
+    </Properties>
+
+      <Properties>
+        <Property name="error" type="string">
+            The message Error years is not empty
+        </Property>
+    </Properties>
+
+    </Col>
+
+    <Col sticky>
+    <CodeGroup title="Request" tag="POST" label="/v1/human-resource/submissionDeadline">
+    ```typescript {{ title: 'axios' }}
+    const response = axios.post('/v1/human-resource/submissionDeadline/{years}', {
+        year: 2024,
+        periods: [
+            {
+            month: "January",
+            submission_deadline: "2024-01-31"
+            },
+            {
+            month: "February",
+            submission_deadline: "2024-02-29"
+            },
+            {
+            month: "March",
+            submission_deadline: "2024-03-31"
+            }
+            // Tambahkan bulan lainnya sesuai kebutuhan
+        ]
+    })
+    ```
+    </CodeGroup>
+    <CodeGroup title="Response">
+    ```json {{ title: '200' }}
+        {
+            "message": "Succesfuly setting deadline ."
+        }
+    ```
+    </CodeGroup>
+    <CodeGroup title="Response">
+    ```json {{ title: '404' }}
+        {
+            "message": "year is not empty."
+        }
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
+
 ## List get tahun assessment dan periode. {{ tag: 'GET', label: '/v1/human-resource/submissionDeadline' }}
 
 <Row>
@@ -155,7 +230,7 @@ Submisson deadline
   </Col>
 </Row>
 <br />
-## Update setting deadline setiap tahun. {{ tag: 'PUT', label: '/v1/human-resource/submissionDeadline' }}
+## Update setting deadline setiap tahun. {{ tag: 'PATCH', label: '/v1/human-resource/submissionDeadline/:id' }}
 <Row>
     <Col>
 
@@ -191,9 +266,9 @@ Submisson deadline
 
   </Col>
   <Col sticky>
-    <CodeGroup title="Request" tag="GET" label="/v1/human-resource/submissionDeadline">
+    <CodeGroup title="Request" tag="PATCH" label="/v1/human-resource/submissionDeadline/:id">
     ```typescript {{ title: 'axios' }}
-    const response = axios.put('/v1/human-resource/submissionDeadline/{years}', {
+    const response = axios.patch('/v1/human-resource/submissionDeadline/:id', {
         year: 2024,
         periods: [
             {
@@ -224,6 +299,53 @@ Submisson deadline
     ```json {{ title: '404' }}
         {
             "message": "Error years alredy exists."
+        }
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
+<br />
+## Delete Deadline . {{ tag: 'DELETE', label: '/v1/human-resource/submissionDeadline/:id' }}
+<Row>
+    <Col>
+
+    Endpoint for delete deadline.
+
+
+     <Properties>
+           This endpoint allows you to delete from deadline list.
+    </Properties>
+
+    
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="Request" tag="DELETE" label="/v1/human-resource/submissionDeadline/:id">
+    ```typescript {{ title: 'axios' }}
+    const response = axios.delete('/v1/human-resource/submissionDeadline/:id', {
+        year: 2024,
+        periods: [
+            {
+            month: "January",
+            submission_deadline: "2024-01-31"
+            },
+            {
+            month: "February",
+            submission_deadline: "2024-02-29"
+            },
+            {
+            month: "March",
+            submission_deadline: "2024-03-31"
+            }
+            // Tambahkan bulan lainnya sesuai kebutuhan
+        ]
+    })
+    ```
+    </CodeGroup>
+    <CodeGroup title="Response">
+    ```json {{ title: '200' }}
+        {
+            "message": "Successfully delete form ."
         }
     ```
     </CodeGroup>
