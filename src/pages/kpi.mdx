@@ -1,16 +1,16 @@
-import { CodeGroup, Row, Col, Properties, Property } from "../components/mdx.jsx"
+import { CodeGroup, Row, Col, Properties, Property } from "/components/mdxjsx"
 
 export const description =
-    'On this page, we’ll dive into the different submisson deadline endpoints you can use to manage submission deadline.'
+    'On this page, we’ll dive into the different submisson deadline endpoints you can use to manage submission deadline'
 
 
 Submisson deadline
 
-## Create Deadline {{ tag: 'POST', label: '/v1/human-resource/submissionDeadline' }}
+## Create Deadline {{ tag: 'POST', label: '/v1/humanResource/submissionDeadline' }}
 
 <Row>
     <Col>
-    This endpoint create setting deadline.
+    This endpoint create setting deadline
 
     # Request
 
@@ -21,7 +21,7 @@ Submisson deadline
             The name for the year unique
         </Property>
         <Property name="periods" type="array<string>">
-            The array of allowed periods month and date submission_deadline.
+            The array of allowed periods month and date submission_deadline
         </Property>
     </Properties>
 
@@ -42,9 +42,9 @@ Submisson deadline
     </Col>
 
     <Col sticky>
-    <CodeGroup title="Request" tag="POST" label="/v1/human-resource/submissionDeadline">
+    <CodeGroup title="Request" tag="POST" label="/v1/humanResource/submissionDeadline">
     ```typescript {{ title: 'axios' }}
-    const response = axios.post('/v1/human-resource/submissionDeadline/{years}', {
+    const response = axiospost('/v1/humanResource/submissionDeadline/{years}', {
         year: 2024,
         periods: [
             {
@@ -58,8 +58,31 @@ Submisson deadline
             {
             month: "March",
             submission_deadline: "2024-03-31"
-            }
-            // Tambahkan bulan lainnya sesuai kebutuhan
+            },
+            month: "April",
+            submission_deadline: "2024-03-31"
+            },
+            month: "May",
+            submission_deadline: "2024-03-31"
+            },
+            month: "June",
+            submission_deadline: "2024-03-31"
+            },
+            month: "Juli",
+            submission_deadline: "2024-03-31"
+            },
+            month: "Agust",
+            submission_deadline: "2024-03-31"
+            },
+            month: "September",
+            submission_deadline: "2024-03-31"
+            },
+            month: "November",
+            submission_deadline: "2024-03-31"
+            },
+            month: "Desember",
+            submission_deadline: "2024-03-31"
+            },
         ]
     })
     ```
@@ -67,26 +90,26 @@ Submisson deadline
     <CodeGroup title="Response">
     ```json {{ title: '200' }}
         {
-            "message": "Succesfuly setting deadline ."
+            "message": "Succesfuly setting deadline "
         }
     ```
     </CodeGroup>
     <CodeGroup title="Response">
     ```json {{ title: '404' }}
         {
-            "message": "year is not empty and already exist."
+            "message": "year already exist"
         }
     ```
     </CodeGroup>
   </Col>
 </Row>
 
-## List get tahun assessment dan periode. {{ tag: 'GET', label: '/v1/human-resource/submissionDeadline' }}
+## List get tahun assessment dan periode {{ tag: 'GET', label: '/v1/humanResource/submissionDeadline' }}
 
 <Row>
   <Col>
 
-    This endpoint get a list of all assessment years and periods.
+    This endpoint get a list of all assessment years and periods
 
     # Request
 
@@ -97,7 +120,7 @@ Submisson deadline
                 Unique this year submission deadline
             </Property>
             <Property name="periods" type="array<string>">
-                The array of periods month, submission_deadline.
+                The array of periods month, submission_deadline
             </Property>
         </Properties>
 
@@ -114,21 +137,21 @@ Submisson deadline
             </Property>
         </Properties>
          <Properties>
-             <Property name="periods.month" type="string">
+             <Property name="periodsmonth" type="string">
                 Get name month in array periods
             </Property>
         </Properties>
         <Properties>
-             <Property name="periods.submission_deadline" type="date">
+             <Property name="periodssubmission_deadline" type="date">
                 Get date submission_deadline in array periods
             </Property>
         </Properties>
 
   </Col>
   <Col sticky>
-    <CodeGroup title="Request" tag="GET" label="/v1/human-resource/submissionDeadline">
+    <CodeGroup title="Request" tag="GET" label="/v1/humanResource/submissionDeadline">
     ```typescript {{ title: 'axios' }}
-    const response = axios.get('/v1/human-resource/submissionDeadline')
+    const response = axiosget('/v1/humanResource/submissionDeadline')
     ```
     </CodeGroup>
     <CodeGroup title="Response">
@@ -136,32 +159,55 @@ Submisson deadline
         {
             "year": 2024,
             "periods": [
-            {
-                "month": "January",
-                "submission_deadline": "2024-01-31"
-            },
-            {
-                "month": "February",
-                "submission_deadline": "2024-02-28"
-            },
-            {
-                "month": "Maret",
-                "submission_deadline": "2024-12-31"
-            }
-            ...
+                {
+                month: "January",
+                submission_deadline: "2024-01-31"
+                },
+                {
+                month: "February",
+                submission_deadline: "2024-02-29"
+                },
+                {
+                month: "March",
+                submission_deadline: "2024-03-31"
+                },
+                month: "April",
+                submission_deadline: "2024-03-31"
+                },
+                month: "May",
+                submission_deadline: "2024-03-31"
+                },
+                month: "June",
+                submission_deadline: "2024-03-31"
+                },
+                month: "Juli",
+                submission_deadline: "2024-03-31"
+                },
+                month: "Agust",
+                submission_deadline: "2024-03-31"
+                },
+                month: "September",
+                submission_deadline: "2024-03-31"
+                },
+                month: "November",
+                submission_deadline: "2024-03-31"
+                },
+                month: "Desember",
+                submission_deadline: "2024-03-31"
+                }
             ]
         },
-        ...
+        
     ```
     </CodeGroup>
   </Col>
 </Row>
 <br />
-## List pertahun assessment dan periode. {{ tag: 'GET', label: '/v1/human-resource/submissionDeadline/{year}' }}
+## List pertahun assessment dan periode {{ tag: 'GET', label: '/v1/humanResource/submissionDeadline/{year}' }}
 <Row>
   <Col>
   
-    This endpoint takes a list of specific years to display data with year parameter.
+    This endpoint takes a list of specific years to display data with year parameter
 
     # Request
 
@@ -172,7 +218,7 @@ Submisson deadline
                 Unique this year submission deadline
             </Property>
             <Property name="periods" type="array<string>">
-                The array of periods month, submission_deadline.
+                The array of periods month, submission_deadline
             </Property>
     </Properties>
 
@@ -189,20 +235,20 @@ Submisson deadline
             </Property>
         </Properties>
          <Properties>
-             <Property name="periods.month" type="string">
+             <Property name="periodsmonth" type="string">
                 Get name month in array periods
             </Property>
         </Properties>
         <Properties>
-             <Property name="periods.submission_deadline" type="date">
+             <Property name="periodssubmission_deadline" type="date">
                 Get date submission_deadline in array periods
             </Property>
         </Properties>
   </Col>
   <Col sticky>
-    <CodeGroup title="Request" tag="GET" label="/v1/human-resource/submissionDeadline/{year}">
+    <CodeGroup title="Request" tag="GET" label="/v1/humanResource/submissionDeadline/{year}">
     ```typescript {{ title: 'axios' }}
-    const response = axios.get('/v1/human-resource/submissionDeadline/{years}')
+    const response = axiosget('/v1/humanResource/submissionDeadline/{years}')
     ```
     </CodeGroup>
     <CodeGroup title="Response">
@@ -210,19 +256,42 @@ Submisson deadline
         {
             "year": 2024,
             "periods": [
-            {
-                "month": "January",
-                "submission_deadline": "2024-01-31"
-            },
-            {
-                "month": "February",
-                "submission_deadline": "2024-02-28"
-            },
-            {
-                "month": "Maret",
-                "submission_deadline": "2024-12-31"
-            }
-            ...
+                {
+                month: "January",
+                submission_deadline: "2024-01-31"
+                },
+                {
+                month: "February",
+                submission_deadline: "2024-02-29"
+                },
+                {
+                month: "March",
+                submission_deadline: "2024-03-31"
+                },
+                month: "April",
+                submission_deadline: "2024-03-31"
+                },
+                month: "May",
+                submission_deadline: "2024-03-31"
+                },
+                month: "June",
+                submission_deadline: "2024-03-31"
+                },
+                month: "Juli",
+                submission_deadline: "2024-03-31"
+                },
+                month: "Agust",
+                submission_deadline: "2024-03-31"
+                },
+                month: "September",
+                submission_deadline: "2024-03-31"
+                },
+                month: "November",
+                submission_deadline: "2024-03-31"
+                },
+                month: "Desember",
+                submission_deadline: "2024-03-31"
+                }
             ]
         }
     ```
@@ -230,11 +299,11 @@ Submisson deadline
   </Col>
 </Row>
 <br />
-## Update setting deadline setiap tahun. {{ tag: 'PATCH', label: '/v1/human-resource/submissionDeadline/:id' }}
+## Update setting deadline setiap tahun {{ tag: 'PATCH', label: '/v1/humanResource/submissionDeadline/:id' }}
 <Row>
     <Col>
 
-    Endpoint for setting submission deadline.
+    Endpoint for setting submission deadline
 
     # Request
 
@@ -245,7 +314,7 @@ Submisson deadline
             The name for the year unique
         </Property>
         <Property name="periods" type="array<string>">
-            The array of allowed periods name.
+            The array of allowed periods name
         </Property>
     </Properties>
 
@@ -266,25 +335,48 @@ Submisson deadline
 
   </Col>
   <Col sticky>
-    <CodeGroup title="Request" tag="PATCH" label="/v1/human-resource/submissionDeadline/:id">
+    <CodeGroup title="Request" tag="PATCH" label="/v1/humanResource/submissionDeadline/:id">
     ```typescript {{ title: 'axios' }}
-    const response = axios.patch('/v1/human-resource/submissionDeadline/:id', {
+    const response = axiospatch('/v1/humanResource/submissionDeadline/:id', {
         year: 2024,
         created_at : 2024-01-31,
         periods: [
             {
-            month: "January",
-            submission_deadline: "2024-01-31"
+                month: "January",
+                submission_deadline: "2024-01-31"
             },
             {
-            month: "February",
-            submission_deadline: "2024-02-29"
+                month: "February",
+                submission_deadline: "2024-02-29"
             },
             {
-            month: "March",
-            submission_deadline: "2024-03-31"
+                month: "March",
+                submission_deadline: "2024-03-31"
+            },
+                month: "April",
+                submission_deadline: "2024-03-31"
+            },
+                month: "May",
+                submission_deadline: "2024-03-31"
+            },
+                month: "June",
+                submission_deadline: "2024-03-31"
+            },
+                month: "Juli",
+                submission_deadline: "2024-03-31"
+            },
+                month: "Agust",
+                submission_deadline: "2024-03-31"
+            },
+                month: "September",
+                submission_deadline: "2024-03-31"
+            },
+                month: "November",
+                submission_deadline: "2024-03-31"
+            },
+                month: "Desember",
+                submission_deadline: "2024-03-31"
             }
-            // Tambahkan bulan lainnya sesuai kebutuhan
         ]
     })
     ```
@@ -292,53 +384,76 @@ Submisson deadline
     <CodeGroup title="Response">
     ```json {{ title: '200' }}
         {
-            "message": "Successfully updated."
+            "message": "Successfully updated"
         }
     ```
     </CodeGroup>
     <CodeGroup title="Response">
     ```json {{ title: '404' }}
         {
-            "message": "Error years already exists."
+            "message": "Error years already exists"
         }
     ```
     </CodeGroup>
   </Col>
 </Row>
 <br />
-## Delete Deadline . {{ tag: 'DELETE', label: '/v1/human-resource/submissionDeadline/:id' }}
+## Delete Deadline  {{ tag: 'DELETE', label: '/v1/humanResource/submissionDeadline/:id' }}
 <Row>
     <Col>
 
-    Endpoint for delete deadline.
+    Endpoint for delete deadline
 
 
      <Properties>
-           This endpoint allows you to delete from deadline list.
+           This endpoint allows you to delete from deadline list
     </Properties>
 
     
 
   </Col>
   <Col sticky>
-    <CodeGroup title="Request" tag="DELETE" label="/v1/human-resource/submissionDeadline/:id">
+    <CodeGroup title="Request" tag="DELETE" label="/v1/humanResource/submissionDeadline/:id">
     ```typescript {{ title: 'axios' }}
-    const response = axios.delete('/v1/human-resource/submissionDeadline/:id', {
+    const response = axiosdelete('/v1/humanResource/submissionDeadline/:id', {
         year: 2024,
         periods: [
             {
-            month: "January",
-            submission_deadline: "2024-01-31"
+                month: "January",
+                submission_deadline: "2024-01-31"
             },
             {
-            month: "February",
-            submission_deadline: "2024-02-29"
+                month: "February",
+                submission_deadline: "2024-02-29"
             },
             {
-            month: "March",
-            submission_deadline: "2024-03-31"
+                month: "March",
+                submission_deadline: "2024-03-31"
+            },
+                month: "April",
+                submission_deadline: "2024-03-31"
+            },
+                month: "May",
+                submission_deadline: "2024-03-31"
+            },
+                month: "June",
+                submission_deadline: "2024-03-31"
+            },
+                month: "Juli",
+                submission_deadline: "2024-03-31"
+            },
+                month: "Agust",
+                submission_deadline: "2024-03-31"
+            },
+                month: "September",
+                submission_deadline: "2024-03-31"
+            },
+                month: "November",
+                submission_deadline: "2024-03-31"
+            },
+                month: "Desember",
+                submission_deadline: "2024-03-31"
             }
-            // Tambahkan bulan lainnya sesuai kebutuhan
         ]
     })
     ```
@@ -346,22 +461,22 @@ Submisson deadline
     <CodeGroup title="Response">
     ```json {{ title: '200' }}
         {
-            "message": "Successfully delete form ."
+            "message": "Successfully delete form "
         }
     ```
     </CodeGroup>
   </Col>
 </Row>
 <br />
-## Post Generate Denda . {{ tag: 'POST', label: '/v1/human-resource/generateDenda' }}
+## Post Generate Denda  {{ tag: 'POST', label: '/v1/humanResource/generateDenda' }}
 <Row>
     <Col>
 
-    Endpoint for generate denda.
+    Endpoint for generate denda
 
 
      <Properties>
-           This endpoint for generate denda.
+           This endpoint for generate denda
     </Properties>
 
     # Request
@@ -370,19 +485,19 @@ Submisson deadline
 
      <Properties>
         <Property name="employee_id" type="string">
-           Unique identifier for the employee.
+           Unique identifier for the employee
         </Property>
         <Property name="submission_date" type="string (YYYY-MM-DD)">
-            The submission_date The date when the employee submitted their evaluation.
+            The submission_date The date when the employee submitted their evaluation
         </Property>
         <Property name="deadline_date" type="string (YYYY-MM-DD)">
-            The deadline_date The deadline for submitting evaluations.
+            The deadline_date The deadline for submitting evaluations
         </Property>
         <Property name="status" type="string (draft, submitted)">
-            The statys drafy and submitted The status of the evaluation (draft or submitted).
+            The statys drafy and submitted The status of the evaluation (draft or submitted)
         </Property>
         <Property name="penalty_basis" type="number">
-            The penalty_basis The monetary basis for calculating the penalty per day..
+            The penalty_basis The monetary basis for calculating the penalty per day
         </Property>
     </Properties>
 
@@ -390,37 +505,37 @@ Submisson deadline
 
     <Properties>
         <Property name="employee_id" type="string">
-           The ID of the employee.
+           The ID of the employee
         </Property>
         <Property name="penalty_amount" type="number">
-            Total penalty amount in Rupiah.
+            Total penalty amount in Rupiah
         </Property>
         <Property name="days_late" type="number">
-            Total number of days late.
+            Total number of days late
         </Property>
         <Property name="evaluation_status" type="string">
-            Status of the evaluation (submitted, draft, not submitted)..
+            Status of the evaluation (submitted, draft, not submitted)
         </Property>
         <Property name="message" type="string">
-            Additional information about the penalty calculation.
+            Additional information about the penalty calculation
         </Property>
     </Properties>
 
     ### Notes
     <Properties>
         <Property name="note">
-           If the penalty basis is not provided or is null, the penalty amount will also be considered null.
+           If the penalty basis is not provided or is null, the penalty amount will also be considered null
         </Property>
         <Property name="note">
-            The current date should be dynamically fetched from the server at the time of the request to ensure accuracy.
+            The current date should be dynamically fetched from the server at the time of the request to ensure accuracy
         </Property>
     </Properties>
 
   </Col>
   <Col sticky>
-    <CodeGroup title="Request" tag="POST" label="/v1/human-resource/generateDenda">
+    <CodeGroup title="Request" tag="POST" label="/v1/humanResource/generateDenda">
     ```typescript {{ title: 'axios' }}
-    const response = axios.post('/v1/human-resource/generateDenda', {
+    const response = axiospost('/v1/humanResource/generateDenda', {
             employee_id: "E123",
             submission_date: "2023-09-05",
             deadline_date: "2023-09-01",
@@ -436,44 +551,44 @@ Submisson deadline
             "penalty_amount": 40000,
             "days_late": 4,
             "evaluation_status": "draft",
-            "message": "Late submission penalty calculated."
+            "message": "Late submission penalty calculated"
         }
     ```
     </CodeGroup>
   </Col>
 </Row>
 <br />
-## All Report Denda . {{ tag: 'GET', label: '/v1/human-resource/reportDenda' }}
+## All Report Denda  {{ tag: 'GET', label: '/v1/humanResource/reportDenda' }}
 <Row>
     <Col>
 
-    Endpoint for All Report Denda.
+    Endpoint for All Report Denda
 
 
      <Properties>
-           Endpoint for All Report Denda.
+           Endpoint for All Report Denda
     </Properties>
 
     ### Response
 
     <Properties>
         <Property name="Description">
-           Retrieves a report of late evaluation penalties for employees.
+           Retrieves a report of late evaluation penalties for employees
         </Property>
     </Properties>
 
     ### Notes
     <Properties>
         <Property name="note">
-           The report will include all employees.
+           The report will include all employees
         </Property>
     </Properties>
 
   </Col>
   <Col sticky>
-    <CodeGroup title="Request" tag="GET" label="/v1/human-resource/reportDenda">
+    <CodeGroup title="Request" tag="GET" label="/v1/humanResource/reportDenda">
     ```typescript {{ title: 'axios' }}
-    const response = axios.post('/v1/human-resource/reportDenda')
+    const response = axiospost('/v1/humanResource/reportDenda')
     ```
     </CodeGroup>
     <CodeGroup title="Response">
@@ -499,56 +614,56 @@ Submisson deadline
                     "evaluation_status": "submitted"
                 }
         ],
-        "message": "Report generated successfully."
+        "message": "Report generated successfully"
     }
     ```
     </CodeGroup>
   </Col>
 </Row>
 <br />
-## Report Denda Get Range Date . {{ tag: 'GET', label: '/v1/human-resource/reportDenda?start_date=2023-09-01&end_date=2023-09-05' }}
+## Report Denda Get Range Date  {{ tag: 'GET', label: '/v1/humanResource/reportDenda?start_date=2023-09-01&end_date=2023-09-05' }}
 <Row>
     <Col>
 
-    Endpoint for generate denda.
+    Endpoint for generate denda
 
 
      <Properties>
-           This endpoint for generate denda.
+           This endpoint for generate denda
     </Properties>
 
     ### Response
 
     <Properties>
         <Property name="Description">
-           Retrieves a report of late evaluation penalties for employees.
+           Retrieves a report of late evaluation penalties for employees
         </Property>
         <Property name="Query Parameters">
-            start_date (string, optional): Filter report from this date (YYYY-MM-DD).
+            start_date (string, optional): Filter report from this date (YYYY-MM-DD)
         </Property>
         <Property name="Query Parameters">
-            end_date (string, optional): Filter report until this date (YYYY-MM-DD).
+            end_date (string, optional): Filter report until this date (YYYY-MM-DD)
         </Property>
     </Properties>
 
     ### Notes
     <Properties>
         <Property name="note">
-           The report will include all employees who have late submissions within the specified date range.
+           The report will include all employees who have late submissions within the specified date range
         </Property>
         <Property name="note">
-            If no parameters are provided, the report will default to showing all penalties for the current month.
+            If no parameters are provided, the report will default to showing all penalties for the current month
         </Property>
         <Property name="note">
-            The API should handle cases where no penalties are found, returning an appropriate message and an empty report array.
+            The API should handle cases where no penalties are found, returning an appropriate message and an empty report array
         </Property>
     </Properties>
 
   </Col>
   <Col sticky>
-    <CodeGroup title="Request" tag="GET" label="/v1/human-resource/reportDenda?start_date=2023-09-01&end_date=2023-09-05">
+    <CodeGroup title="Request" tag="GET" label="/v1/humanResource/reportDenda?start_date=2023-09-01&end_date=2023-09-05">
     ```typescript {{ title: 'axios' }}
-    const response = axios.post('/v1/human-resource/reportDenda?start_date=2023-09-01&end_date=2023-09-05')
+    const response = axiospost('/v1/humanResource/reportDenda?start_date=2023-09-01&end_date=2023-09-05')
     ```
     </CodeGroup>
     <CodeGroup title="Response">
@@ -574,68 +689,68 @@ Submisson deadline
                     "evaluation_status": "submitted"
                 }
         ],
-        "message": "Report generated successfully."
+        "message": "Report generated successfully"
     }
     ```
     </CodeGroup>
   </Col>
 </Row>
 <br />
-## History Denda. {{ tag: 'GET', label: '/v1/human-resource/historyDenda?employee_id=E123&start_date=2023-08-01&end_date=2023-09-05' }}
+## History Denda {{ tag: 'GET', label: '/v1/humanResource/historyDenda?employee_id=E123&start_date=2023-08-01&end_date=2023-09-05' }}
 <Row>
     <Col>
 
-    Endpoint for histoy denda.
+    Endpoint for histoy denda
 
 
      <Properties>
-           This endpoint for histoy denda.
+           This endpoint for histoy denda
     </Properties>
 
     ### Response
 
     <Properties>
         <Property name="Description">
-           Retrieves a history of late evaluation penalties for employees, with default filters applied.
+           Retrieves a history of late evaluation penalties for employees, with default filters applied
         </Property>
         <Property name="Query Parameters">
-           employee_id (string, optional): Filter by specific employee ID.
+           employee_id (string, optional): Filter by specific employee ID
         </Property>
         <Property name="Query Parameters">
-            status (string, optional): Filter by evaluation status (e.g., draft, submitted, not submitted).
+            status (string, optional): Filter by evaluation status (eg, draft, submitted, not submitted)
         </Property>
         <Property name="Query Parameters">
-            start_date (string, optional): Filter report from this date (YYYY-MM-DD).
+            start_date (string, optional): Filter report from this date (YYYY-MM-DD)
         </Property>
         <Property name="Query Parameters">
-            end_date (string, optional): Filter report until this date (YYYY-MM-DD).
+            end_date (string, optional): Filter report until this date (YYYY-MM-DD)
         </Property>
         <Property name="Default Filters">
-            If no filters are provided, the API will default to returning penalties for the last 30 days.
+            If no filters are provided, the API will default to returning penalties for the last 30 days
         </Property>
         <Property name="Default Filters">
-            The default status filter will be set to include all statuses.
+            The default status filter will be set to include all statuses
         </Property>
     </Properties>
 
     ### Notes
     <Properties>
         <Property name="note">
-           If no penalties are found for the specified filters, the response should contain an empty history array and an appropriate message.
+           If no penalties are found for the specified filters, the response should contain an empty history array and an appropriate message
         </Property>
         <Property name="note">
-            The API should handle date validation and return errors for invalid date formats.
+            The API should handle date validation and return errors for invalid date formats
         </Property>
         <Property name="note">
-            Pagination may be implemented if the history data set is extensive, to improve performance.
+            Pagination may be implemented if the history data set is extensive, to improve performance
         </Property>
     </Properties>
 
   </Col>
   <Col sticky>
-    <CodeGroup title="Request" tag="GET" label="/v1/human-resource/historyDenda?employee_id=E123&start_date=2023-08-01&end_date=2023-09-05">
+    <CodeGroup title="Request" tag="GET" label="/v1/humanResource/historyDenda?employee_id=E123&start_date=2023-08-01&end_date=2023-09-05">
     ```typescript {{ title: 'axios' }}
-    const response = axios.post('/v1/human-resource/historyDenda?employee_id=E123&start_date=2023-08-01&end_date=2023-09-05')
+    const response = axiospost('/v1/humanResource/historyDenda?employee_id=E123&start_date=2023-08-01&end_date=2023-09-05')
     ```
     </CodeGroup>
     <CodeGroup title="Response">
@@ -664,7 +779,7 @@ Submisson deadline
             }
         ],
         "total_penalties": 70000,
-        "message": "Penalty history retrieved successfully."
+        "message": "Penalty history retrieved successfully"
     }
     ```
     </CodeGroup>
